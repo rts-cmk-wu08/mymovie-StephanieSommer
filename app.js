@@ -58,7 +58,7 @@ let popularURL = `https://api.themoviedb.org/3/movie/popular?api_key=${myKey}&la
                 nowShowing.innerHTML = `  
                 <img class="posters" src="${imgPathShowing + result.poster_path}" alt="">
                 <h3 class="nowShowingTitles">${result.title}</h3>
-                <p class="nowShowingRatings"><i class="fa-sharp fa-solid fa-star"></i> ${result.vote_average} /10 IMDb</p>
+                <p class="ratings"><i class="fa-sharp fa-solid fa-star"></i> ${result.vote_average} /10 IMDb</p>
                 `
             nowShowingWrapper.append(nowShowing)
 
@@ -102,18 +102,24 @@ let popularURL = `https://api.themoviedb.org/3/movie/popular?api_key=${myKey}&la
                     popular.classList.add("popular")
                     popular.setAttribute("href", `details.html?id=${result.id}`)
 
-            popular.innerHTML = `  
+                popular.innerHTML = `  
                 <img class="popularImages" src="${imgPathPopular + result.poster_path}" alt="">
-                <div class="popularInfoWrapper">
-                <h3 class="popularTitles">${result.title}</h3>
-                <p class="nowShowingRatings"><i class="fa-sharp fa-solid fa-star"></i> ${result.vote_average} /10 IMDb</p>
-                <p class="genreText"></p>
-                </div>
+                
                 `
             popularWrapper.append(popular)
 
+        let popularInfoWrapper = document.createElement("div")
+                popularInfoWrapper.classList.add("popularInfoWrapper")
+
+                popularInfoWrapper.innerHTML =  `
+                <h3 class="popularTitles">${result.title}</h3>
+                <p class="ratings"><i class="fa-sharp fa-solid fa-star"></i> ${result.vote_average} /10 IMDb</p>
+                <p class="genreText"></p>
+                `
+            popular.append(popularInfoWrapper)
+
     // sdftghuji 
-            let genreElm = popular.querySelector(".genreText")
+            let genreElm = popularInfoWrapper.querySelector(".genreText")
                 console.log(genreElm)
 
                 result.genre_ids.forEach(id => {

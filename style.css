@@ -3,6 +3,10 @@ body {
     margin: 0;
 }
 
+main {
+    margin: 0 1rem 4rem;
+}
+
 .myMoviesHeadline, .nowShowingHeadline, .popularHeadline {
     font-family: 'Merriweather', serif;
     font-size: 1rem;
@@ -20,6 +24,7 @@ body {
 
 .seeMoreButton {
     background-color: transparent;
+    font-size: 0.6rem;
     color: #AAA9B1;
     border: 2px solid #AAA9B1;
     border-radius: 100px;
@@ -48,10 +53,11 @@ body {
 }
 
 .nowShowingTitles, .popularTitles {
-    font-size: 1rem;
+    font-size: .8rem;
+    font-weight: 700;
 }
 
-.nowShowingMovieRatings {
+.ratings {
     font-size: 0.75rem;
 }
 
@@ -61,16 +67,14 @@ body {
 
 .popular {
     display: flex;
-    
 }
 
 .popularInfoWrapper {
-    /* flex-shrink: 1; */
     margin-left: 1rem;
 }
 
 .popularImages {
-    width: 5.5rem;
+    width: 5.3rem;
 }
 
 .genreSpan {
@@ -87,10 +91,12 @@ body {
 }
 
 .footer {
+    display: flex;
+    justify-content: space-around;
     position: fixed;
     bottom: 0;
     height: 3.75rem;
-    background-color: #000000;
+    background-color: white;
     width: 100%;
     margin: 0;
     color: black;
@@ -107,6 +113,6 @@ body {
 
 .fa-film, .fa-ticket, .fa-bookmark {
     color: #BCBCCD;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     margin-top: 1rem;
 }
