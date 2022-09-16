@@ -1,8 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+let imgPathPopular = "https://image.tmdb.org/t/p/w500"
 let imgPathShowing = "https://image.tmdb.org/t/p/original"
 let myKey = "61b4cbd423cdfbcd59353195172df0dc"
 let nowShowingURL = `https://api.themoviedb.org/3/movie/now_playing?api_key=${myKey}&language=en-US&page=1`
+let popularURL = `https://api.themoviedb.org/3/movie/popular?api_key=${myKey}&language=en-US&page=1`
+
 
     // Laver en variable, henter div'en fra index.html med classname wrapper 
     let wrapperElm = document.querySelector(".wrapper")
@@ -63,8 +66,88 @@ let nowShowingURL = `https://api.themoviedb.org/3/movie/now_playing?api_key=${my
 
     })
 
-
-
+    // Laver en section til Popular fetchet
+    let popularSection = document.createElement("section")
+            popularSection.classList.add("popularSection")
     
+        main.append(popularSection)
+
+    // Laver en wrapper til headline og button
+    let popularHeadlineWrapper = document.createElement("div")
+            popularHeadlineWrapper.classList.add("popularHeadlineWrapper")
+
+            popularHeadlineWrapper.innerHTML = `
+            <h2 class="popularHeadline">Popular</h2>
+            <button class="seeMoreButton">See more</button>
+            `
+        popularSection.append(popularHeadlineWrapper)
+
+
+    // Laver en wrapper for img, headline og paragraph
+    let popularWrapper = document.createElement("div")
+            popularWrapper.classList.add("popularWrapper")
+        
+        popularSection.append(popularWrapper)
+
+
+    // Laver et fetch til popular wrapperen
+    fetch(popularURL)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+
+        data.results.forEach(result => {
+
+            let popular = document.createElement("a")
+                    popular.classList.add("popular")
+                    popular.setAttribute("href", `details.html?id=${result.id}`)
+
+            popular.innerHTML = `  
+                <img class="popularImages" src="${imgPathPopular + result.poster_path}" alt="">
+                <div class="popularInfoWrapper">
+                <h3 class="popularTitles">${result.title}</h3>
+                <p class="nowShowingRatings"><i class="fa-sharp fa-solid fa-star"></i> ${result.vote_average} /10 IMDb</p>
+                <p class="genreText"></p>
+                </div>
+                `
+            popularWrapper.append(popular)
+
+    // sdftghuji 
+            let genreElm = popular.querySelector(".genreText")
+                console.log(genreElm)
+
+                result.genre_ids.forEach(id => {
+                    
+                    let currentGenre =  genres.find(genre => genre.id == id)
+                    let genreSpan = document.createElement("span")
+                    genreSpan.classList.add("genreSpan")
+                    genreSpan.innerText = currentGenre.name
+                    
+                genreElm.append(genreSpan)
+
+            })
+        })   
+
+    })
+
+    let footer = document.createElement("footer")
+            footer.classList.add("footer")
+
+            
+            // let icons = document.createElement("div")
+            //         icons.classList.add("iconWrapper")
+            
+            footer.innerHTML = `
+            <a href="icon"><i class="fa-solid fa-film"></i></a>
+            <a href="icon"><i class="fa-solid fa-ticket"></i></a>
+            <a href="icon"><i class="fa-regular fa-bookmark"></i></a>
+            `
+
+            wrapperElm.append(footer)
+        // footer.append(icons)
+
+            
+
+
 
 })
