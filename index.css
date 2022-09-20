@@ -99,16 +99,6 @@ main {
     background-color: white;
     width: 100%;
     margin: 0;
-    color: black;
-}
-
-.iconWrapper {
-    display: flex;
-    justify-content: space-between;
-}
-
-.icon {
-    height: 5rem;
 }
 
 .fa-film, .fa-ticket, .fa-bookmark {

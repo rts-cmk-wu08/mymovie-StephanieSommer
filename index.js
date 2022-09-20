@@ -53,7 +53,7 @@ let popularURL = `https://api.themoviedb.org/3/movie/popular?api_key=${myKey}&la
 
                 let nowShowing = document.createElement("a")
                 nowShowing.classList.add("nowShowing")
-                nowShowing.setAttribute("href", `details.html?id=${result.id}`)
+                nowShowing.setAttribute("href", `detail.html?id=${result.id}`)
     
                 nowShowing.innerHTML = `  
                 <img class="posters" src="${imgPathShowing + result.poster_path}" alt="">
@@ -104,7 +104,6 @@ let popularURL = `https://api.themoviedb.org/3/movie/popular?api_key=${myKey}&la
 
                 popular.innerHTML = `  
                 <img class="popularImages" src="${imgPathPopular + result.poster_path}" alt="">
-                
                 `
             popularWrapper.append(popular)
 
@@ -118,7 +117,7 @@ let popularURL = `https://api.themoviedb.org/3/movie/popular?api_key=${myKey}&la
                 `
             popular.append(popularInfoWrapper)
 
-    // sdftghuji 
+            // Laver en forEach til at hente genre
             let genreElm = popularInfoWrapper.querySelector(".genreText")
                 console.log(genreElm)
 
@@ -133,27 +132,16 @@ let popularURL = `https://api.themoviedb.org/3/movie/popular?api_key=${myKey}&la
 
             })
         })   
-
     })
 
+    // Laver en footer
     let footer = document.createElement("footer")
             footer.classList.add("footer")
-
-            
-            // let icons = document.createElement("div")
-            //         icons.classList.add("iconWrapper")
             
             footer.innerHTML = `
-            <a href="icon"><i class="fa-solid fa-film"></i></a>
-            <a href="icon"><i class="fa-solid fa-ticket"></i></a>
-            <a href="icon"><i class="fa-regular fa-bookmark"></i></a>
+            <a href="./detail.html"><i class="fa-solid fa-film"></i></a>
+            <a href="#"><i class="fa-solid fa-ticket"></i></a>
+            <a href="#"><i class="fa-regular fa-bookmark"></i></a>
             `
-
             wrapperElm.append(footer)
-        // footer.append(icons)
-
-            
-
-
-
 })
