@@ -1,44 +1,23 @@
 
+let castSection = document.createElement("section");
+castSection.classList.add("castSection");
 
-fetch(`https://api.themoviedb.org/3/movie/latest?api_key=61b4cbd423cdfbcd59353195172df0dc&language=en-US`)
-.then(response => response.json())
-.then(data => {
-    console.log(data)
+main.append(castSection);
 
+let castHeadlineWrapper = document.createElement("div");
+castHeadlineWrapper.classList.add("castHeadlineWrapper");
 
+castHeadlineWrapper.innerHTML = `
+          <h2 class="castHeadline">Cast</h2>
+          <button class="seeMoreButton">See more</button>
+          `;
+castSection.append(castHeadlineWrapper);
 
-    let largeImg = document.createElement("div")
-            largeImg.innerHTML = `
-            <img src="" alt="">
-            `
-})
+let castImgWrapper = document.createElement("div");
+castImgWrapper.classList.add("castImgWrapper");
 
-
-
-
-
-
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    let params = new URLSearchParams(window.location.search) 
-    let name = params.get("name")
-    console.log(name)
-
-    fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-
-
-            let pokemon = document.createElement("div")
-            pokemon.innerHTML = `
-             <h2>${data.name}</h2>
-             <img src="${data.sprites.other.home.front_default}" alt="">
-             
-             `
-
-            document.body.append(pokemon)
-
-        })
-})
+castImgWrapper.innerHTML = `
+          <img src="" alt="">
+          <p></p>
+          `;
+castSection.append(castImgWrapper);

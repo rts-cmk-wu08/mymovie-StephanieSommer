@@ -1,8 +1,85 @@
 body {
     margin: 0 auto;
+    font-family: 'Mulish', sans-serif;
 }
 
-.largeImg {
-    width: 100vw;
-    height: 5ovh;
+main {
+    margin: 2rem 1.5rem;
+}
+
+.headlineWrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.headline {
+    margin-top: 0;
+    font-size: 1.25rem;
+}
+
+.fa-bookmark {
+    font-size: 1.25rem;
+    margin-top: .3rem;
+}
+
+.ratings {
+    font-size: 0.75rem;
+    color: #9C9C9C;
+}
+
+.fa-star {
+    color: #FFC319;
+}
+
+.genreSpan {
+    display: inline-block;
+    background-color: #DBE3FF;
+    color: #88A4E8;
+    text-transform: uppercase;
+    font-size: 0.5rem;
+    font-weight: 700;
+    border: 2px solid #DBE3FF;
+    border-radius: 100px;
+    margin-right: 0.5rem;
+    padding: .1rem .5rem;
+}
+
+.headlineInfo {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+}
+
+.headlineInfoText {
+    color: #9C9C9C;
+}
+
+.headlineTime, .languageText, .releaseText {
+    font-weight: bold;
+}
+
+.descriptionHeadline, .castHeadline {
+    font-size: 1rem;
+    font-weight: 900;
+}
+
+.descriptionText {
+    font-size: 0.74rem;
+    color: #9C9C9C;
+    line-height: 1.375rem;
+}
+
+.castHeadlineWrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.seeMoreButton {
+    background-color: transparent;
+    font-size: 0.6rem;
+    color: #AAA9B1;
+    border: 2px solid #AAA9B1;
+    border-radius: 100px;
+    height: 1.3rem;
+    align-self: center;
 }

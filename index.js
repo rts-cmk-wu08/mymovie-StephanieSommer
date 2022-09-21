@@ -100,7 +100,7 @@ let popularURL = `https://api.themoviedb.org/3/movie/popular?api_key=${myKey}&la
 
             let popular = document.createElement("a")
                     popular.classList.add("popular")
-                    popular.setAttribute("href", `details.html?id=${result.id}`)
+                    popular.setAttribute("href", `detail.html?id=${result.id}`)
 
                 popular.innerHTML = `  
                 <img class="popularImages" src="${imgPathPopular + result.poster_path}" alt="">
@@ -119,7 +119,7 @@ let popularURL = `https://api.themoviedb.org/3/movie/popular?api_key=${myKey}&la
 
             // Laver en forEach til at hente genre
             let genreElm = popularInfoWrapper.querySelector(".genreText")
-                console.log(genreElm)
+                // console.log(genreElm)
 
                 result.genre_ids.forEach(id => {
                     
