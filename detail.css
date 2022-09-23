@@ -3,8 +3,17 @@ body {
     font-family: 'Mulish', sans-serif;
 }
 
-main {
-    margin: 2rem 1.5rem;
+.main {
+    padding: 2rem 1.5rem 0;
+    background-color: white;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    position: relative;
+    top: -16px;
+}
+
+.heroImg {
+    max-width: 100%;
 }
 
 .headlineWrapper {
@@ -82,4 +91,26 @@ main {
     border-radius: 100px;
     height: 1.3rem;
     align-self: center;
+}
+
+.castSpan {
+    width: 4.5rem;
+    margin-right: 1rem;
+}
+
+.imgNameWrapper {
+    display: flex;
+    overflow-x: scroll;
+    margin-right: 1rem;
+}
+
+.profilImg {
+    width: 4.5rem;
+    height: 4.5rem;
+    object-fit: fill;
+    border-radius: 5px;
+}
+
+.profilName {
+    font-size: 0.75rem;
 }
