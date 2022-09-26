@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Laver main elementet
     let main = document.createElement("main");
-
+    main.classList.add("mainElm")
     wrapperElm.append(main);
 
     // Laver en section til Now Showing fetchet
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Laver en wrapper til headline og button
     let nowShowingHeadlineWrapper = document.createElement("div");
-    nowShowingHeadlineWrapper.classList.add("nowShowingHeadlineWrapper");
+    nowShowingHeadlineWrapper.classList.add("nowShowingHeadlineWrapper", "flex", "spaceBetween");
     nowShowingHeadlineWrapper.innerHTML = `
         <h2 class="nowShowingHeadline">Now Showing</h2>
         <button class="seeMoreButton">See more</button>
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Laver en wrapper for img, headline og paragraph
     let nowShowingWrapper = document.createElement("div");
-    nowShowingWrapper.classList.add("nowShowingWrapper");
+    nowShowingWrapper.classList.add("nowShowingWrapper", "flex");
 
     nowShowingSection.append(nowShowingWrapper);
 
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Laver en wrapper til headline og button
     let popularHeadlineWrapper = document.createElement("div");
-    popularHeadlineWrapper.classList.add("popularHeadlineWrapper");
+    popularHeadlineWrapper.classList.add("popularHeadlineWrapper", "flex", "spaceBetween");
 
     popularHeadlineWrapper.innerHTML = `
         <h2 class="popularHeadline">Popular</h2>
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             data.results.forEach((result) => {
                 let popular = document.createElement("a");
-                popular.classList.add("popular");
+                popular.classList.add("popular", "flex");
                 popular.setAttribute("href", `detail.html?id=${result.id}`);
 
                 popular.innerHTML = `  
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Laver en footer
     let footer = document.createElement("footer");
-    footer.classList.add("footer");
+    footer.classList.add("footer", "flex");
 
     footer.innerHTML = `
         <a href="./detail.html"><i class="fa-solid fa-film"></i></a>

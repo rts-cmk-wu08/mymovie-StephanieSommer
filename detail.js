@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Laver main elementet
     let main = document.createElement("main");
-    main.classList.add("main");
+    main.classList.add("mainDetail");
     wrapperElm.append(main);
 
     // Laver en section til detajler
@@ -44,15 +44,15 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
 
             detailSection.innerHTML = `
-      <div class="headlineWrapper">
+      <div class="headlineWrapper flex spaceBetween">
       <h1 class="headline">${data.title}</h1>
-      <i class="fa-regular fa-bookmark"></i>
+      <i class="fa-regular fa-bookmark detailBookmark"></i>
       </div>
       <p class="ratings"><i class="fa-sharp fa-solid fa-star"></i> ${
           data.vote_average
       } /10 IMDb</p>
       <p class="genreText"></p>
-      <div class="headlineInfo">
+      <div class="headlineInfo flex spaceBetween">
           <div class="length">
               <p class="headlineInfoText">Length</p>
               <p class="headlineTime">${hours + "h " + minutes + "min"}</p>
@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             //  Laver en wrapper til headline og button
             let castHeadlineWrapper = document.createElement("div");
-            castHeadlineWrapper.classList.add("castHeadlineWrapper");
+            castHeadlineWrapper.classList.add("castHeadlineWrapper", "flex", "spaceBetween");
 
             castHeadlineWrapper.innerHTML = `
                 <h2 class="castHeadline">Cast</h2>
@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Laver en wrapper til profilbillede og navn
             let imgNameWrapper = document.createElement("div");
-            imgNameWrapper.classList.add("imgNameWrapper");
+            imgNameWrapper.classList.add("imgNameWrapper", "flex");
             castSection.append(imgNameWrapper);
 
             //  Laver et loop, henter img og navn
