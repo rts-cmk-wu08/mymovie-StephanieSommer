@@ -1,4 +1,35 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+let setActiveStyleSheet = function(title) {
+    let css = `link[rel="alternate stylesheet"]`
+    let stylesheets = document.querySelectorAll(css)
+    stylesheets.forEach(sheet => sheet.disabled = true)
+    let selctor = `link[title="${title}"]`
+    let activeSheet = document.querySelector(selctor)
+    activeSheet.disabled = false
+    localStorage.setItem("theme", title)
+}
+
+let savedSheet = localStorage.getItem("theme")
+if(savedSheet) {
+    setActiveStyleSheet(savedSheet)
+} else {
+    setActiveStyleSheet("light")
+}
+
+lightBtnElm = document.querySelector('[data-mode="light"]')
+darkBtnElm = document.querySelector('[data-mode="dark"]')
+
+
+lightBtnElm.addEventListener("click", function() {
+    setActiveStyleSheet("light")
+})
+
+darkBtnElm.addEventListener("click", function() {
+    setActiveStyleSheet("dark")
+})
+
+
     let imgPathPopular = "https://image.tmdb.org/t/p/w500";
     let imgPathShowing = "https://image.tmdb.org/t/p/original";
     let myKey = "61b4cbd423cdfbcd59353195172df0dc";
@@ -12,6 +43,12 @@ document.addEventListener("DOMContentLoaded", () => {
     let header = document.createElement("header");
     header.innerHTML = `
         <h1 class="myMoviesHeadline">MyMovies</h1>
+        <div class="toggleSwitch flex">
+        <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+        </label>
+        </div>
         `;
     wrapperElm.append(header);
 
@@ -135,9 +172,10 @@ document.addEventListener("DOMContentLoaded", () => {
     footer.classList.add("footer", "flex");
 
     footer.innerHTML = `
-        <a href="./detail.html"><i class="fa-solid fa-film"></i></a>
+        <a href="#"><i class="fa-solid fa-film"></i></a>
         <a href="#"><i class="fa-solid fa-ticket"></i></a>
         <a href="#"><i class="fa-regular fa-bookmark"></i></a>
         `;
     wrapperElm.append(footer);
+    
 });

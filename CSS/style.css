@@ -18,10 +18,10 @@ body {
 .mainDetail {
     padding: 2rem 1.5rem 0;
     background-color: white;
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
+    border-top-left-radius: .6rem;
+    border-top-right-radius: .6rem;
     position: relative;
-    top: -16px;
+    top: -40px;
 }
 
 .myMoviesHeadline, .nowShowingHeadline, .popularHeadline, .descriptionHeadline, .castHeadline {
@@ -32,6 +32,7 @@ body {
 
 .myMoviesHeadline {
     text-align: center;
+    margin-top: 1.5rem;
 }
 
 .nowShowingTitles, .popularTitles {
@@ -106,6 +107,19 @@ body {
     max-width: 100%;
 }
 
+.toggleSwitch {
+    position: relative;
+    top: -29px;
+}
+
+.arrowToggle {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin: 0 1.5rem;
+    top: -170px;
+}
+
 .popularInfoWrapper {
     margin-left: 1rem;
 }
@@ -136,6 +150,11 @@ body {
     margin-top: 1rem;
 }
 
+.fa-arrow-left-long {
+    color: white;
+    font-size: 1.5rem;
+}
+
 .detailBookmark {
     font-size: 1.25rem;
     margin-top: .3rem;
@@ -153,4 +172,85 @@ body {
     background-color: white;
     width: 100%;
     margin: 0;
+    box-shadow: 0px 0px 8px rgba(43, 45, 103, 0.08);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+.toggleSwitch {
+    justify-content: flex-end;
+    margin-right: 1.5rem;
+}
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 2.5rem;
+    height: 1.35rem;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    /* cursor: pointer; */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #AAA9B1;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 1.125rem;
+    width: 1.125rem;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: pink;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px pink;
+  }
+  
+  input:checked + .slider:before {
+    /* -webkit-transform: translateX(260px); */
+    /* -ms-transform: translateX(26px); */
+    transform: translateX(1.125rem);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 100px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }

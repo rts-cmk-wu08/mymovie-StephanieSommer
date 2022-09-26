@@ -1,4 +1,32 @@
 document.addEventListener("DOMContentLoaded", () => {
+    let setActiveStyleSheet = function (title) {
+        let css = `link[rel="alternate stylesheet"]`;
+        let stylesheets = document.querySelectorAll(css);
+        stylesheets.forEach((sheet) => (sheet.disabled = true));
+        let selctor = `link[title="${title}"]`;
+        let activeSheet = document.querySelector(selctor);
+        activeSheet.disabled = false;
+        localStorage.setItem("theme", title);
+    };
+
+    let savedSheet = localStorage.getItem("theme");
+    if (savedSheet) {
+        setActiveStyleSheet(savedSheet);
+    } else {
+        setActiveStyleSheet("light");
+    }
+
+    lightBtnElm = document.querySelector('[data-mode="light"]');
+    darkBtnElm = document.querySelector('[data-mode="dark"]');
+
+    lightBtnElm.addEventListener("click", function () {
+        setActiveStyleSheet("light");
+    });
+
+    darkBtnElm.addEventListener("click", function () {
+        setActiveStyleSheet("dark");
+    });
+
     let params = new URLSearchParams(window.location.search);
     let id = params.get("id");
     console.log(id);
@@ -40,7 +68,18 @@ document.addEventListener("DOMContentLoaded", () => {
             let minutes = data.runtime % 60;
 
             heroHeader.innerHTML = `
-            <img class="heroImg" src="${imgPathShowing + data.backdrop_path}" alt="">
+            <img class="heroImg" src="${
+                imgPathShowing + data.backdrop_path
+            }" alt="">
+            
+        <div class="arrowToggle">
+            <a href="./index.html"><i class="fa-solid fa-arrow-left-long"></i></a>
+            <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+            </label>
+        </div>
+            
             `;
 
             detailSection.innerHTML = `
@@ -101,7 +140,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             //  Laver en wrapper til headline og button
             let castHeadlineWrapper = document.createElement("div");
-            castHeadlineWrapper.classList.add("castHeadlineWrapper", "flex", "spaceBetween");
+            castHeadlineWrapper.classList.add(
+                "castHeadlineWrapper",
+                "flex",
+                "spaceBetween"
+            );
 
             castHeadlineWrapper.innerHTML = `
                 <h2 class="castHeadline">Cast</h2>
