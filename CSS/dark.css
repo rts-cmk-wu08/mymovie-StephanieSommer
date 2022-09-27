@@ -1,0 +1,22 @@
+body {
+    background-color: black;
+    color: #DBE3FF;
+}
+
+.nowShowingTitles, .popularTitles {
+    color: #DBE3FF;
+}
+
+.posters, .popularImages {
+    filter: drop-shadow(0px 4px 4px rgba(255, 255, 255, 0.50));
+}
+
+.footer {
+    background-color: black;
+    filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.50));
+}
+
+.mainDetail {
+    background-color: black;
+    filter: drop-shadow(0px -10px 8px rgba(255, 255, 255, 0.20));
+}
