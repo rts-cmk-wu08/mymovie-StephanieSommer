@@ -16,6 +16,17 @@ document.addEventListener("DOMContentLoaded", () => {
     heroHeader.classList.add("heroHeader");
     wrapperElm.append(heroHeader);
 
+    let arrowToggleElm = document.createElement("div")
+    arrowToggleElm.classList.add("arrowToggle")
+    arrowToggleElm.innerHTML = `
+    <a href="./index.html"><i class="fa-solid fa-arrow-left-long"></i></a>
+                <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+                </label>
+    `
+    heroHeader.append(arrowToggleElm)
+
     // Laver main elementet
     let main = document.createElement("main");
     main.classList.add("mainDetail");
@@ -39,21 +50,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             let hours = Math.floor(data.runtime / 60);
             let minutes = data.runtime % 60;
-
-            heroHeader.innerHTML = `
-            <img class="heroImg" src="${
-                imgPathShowing + data.backdrop_path
-            }" alt="">
+            let heroImg = new Image()
+            heroImg.src = imgPathShowing + data.backdrop_path
+            heroImg.classList.add("heroImg")
+            heroHeader.prepend(heroImg) 
             
-        <div class="arrowToggle">
-            <a href="./index.html"><i class="fa-solid fa-arrow-left-long"></i></a>
-            <label class="switch">
-            <input type="checkbox">
-            <span class="slider round"></span>
-            </label>
-        </div>
-            
-            `;
 
             detailSection.innerHTML = `
       <div class="headlineWrapper flex spaceBetween">
