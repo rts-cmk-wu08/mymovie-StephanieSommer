@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-
-    let popularPage = 1
+    let popularPage = 1;
     let imgPathPopular = "https://image.tmdb.org/t/p/w500";
     let imgPathShowing = "https://image.tmdb.org/t/p/original";
     let myKey = "61b4cbd423cdfbcd59353195172df0dc";
@@ -25,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Laver main elementet
     let main = document.createElement("main");
-    main.classList.add("mainElm")
+    main.classList.add("mainElm");
     wrapperElm.append(main);
 
     // Laver en section til Now Showing fetchet
@@ -36,7 +35,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Laver en wrapper til headline og button
     let nowShowingHeadlineWrapper = document.createElement("div");
-    nowShowingHeadlineWrapper.classList.add("nowShowingHeadlineWrapper", "flex", "spaceBetween");
+    nowShowingHeadlineWrapper.classList.add(
+        "nowShowingHeadlineWrapper",
+        "flex",
+        "spaceBetween"
+    );
     nowShowingHeadlineWrapper.innerHTML = `
         <h2 class="nowShowingHeadline">Now Showing</h2>
         <button class="seeMoreButton">See more</button>
@@ -61,9 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 nowShowing.setAttribute("href", `detail.html?id=${result.id}`);
 
                 nowShowing.innerHTML = `  
-                <img class="posters" src="${
-                    imgPathShowing + result.poster_path
-                }" alt="">
+                <img class="posters" src=" ${imgPathShowing + result.poster_path}" alt="">
                 <h3 class="nowShowingTitles">${result.title}</h3>
                 <p class="ratings"><i class="fa-sharp fa-solid fa-star"></i> ${
                     result.vote_average
@@ -81,7 +82,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Laver en wrapper til headline og button
     let popularHeadlineWrapper = document.createElement("div");
-    popularHeadlineWrapper.classList.add("popularHeadlineWrapper", "flex", "spaceBetween");
+    popularHeadlineWrapper.classList.add(
+        "popularHeadlineWrapper",
+        "flex",
+        "spaceBetween"
+    );
 
     popularHeadlineWrapper.innerHTML = `
         <h2 class="popularHeadline">Popular</h2>
@@ -95,67 +100,76 @@ document.addEventListener("DOMContentLoaded", () => {
 
     popularSection.append(popularWrapper);
 
-
     function fetchPopular(page) {
-    // Laver et fetch til popular wrapperen
-    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${myKey}&language=en-US&page=${page}`)
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data);
+        // Laver et fetch til popular wrapperen
+        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${myKey}&language=en-US&page=${page}`)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
 
-            data.results.forEach((result, index)  => {
-                let popular = document.createElement("a");
-                popular.classList.add("popular", "flex");
-                popular.setAttribute("href", `detail.html?id=${result.id}`);
+                data.results.forEach((result, index) => {
+                    let popular = document.createElement("a");
+                    popular.classList.add("popular", "flex");
+                    popular.setAttribute("href", `detail.html?id=${result.id}`);
 
-                popular.innerHTML = `  
-                <img class="popularImages" src="${
-                    imgPathPopular + result.poster_path
-                }" alt="">
-                `;
-                popularWrapper.append(popular);
+                    popular.innerHTML = `  
+                <img class="popularImages" src="./Images/placeholder.gif" alt="">`;
+                    popularWrapper.append(popular);
 
-                let popularInfoWrapper = document.createElement("div");
-                popularInfoWrapper.classList.add("popularInfoWrapper");
+                    let popularInfoWrapper = document.createElement("div");
+                    popularInfoWrapper.classList.add("popularInfoWrapper");
 
-                popularInfoWrapper.innerHTML = `
+                    popularInfoWrapper.innerHTML = `
                 <h3 class="popularTitles">${result.title}</h3>
                 <p class="ratings"><i class="fa-sharp fa-solid fa-star"></i> ${result.vote_average} /10 IMDb</p>
                 <p class="genreText"></p>
                 `;
-                popular.append(popularInfoWrapper);
+                    popular.append(popularInfoWrapper);
 
-                // Laver en forEach til at hente genre
-                let genreElm = popularInfoWrapper.querySelector(".genreText");
-                // console.log(genreElm)
+            let imgElm = popular.querySelector("img")
+            
+            let popularImg = new Image()
+            popularImg.src =  `${imgPathPopular + result.poster_path}`
+            
+            popularImg.onload = () => {
+                imgElm.src = popularImg.src
+            }
 
-                result.genre_ids.forEach((id) => {
-                    let currentGenre = genres.find((genre) => genre.id == id);
-                    let genreSpan = document.createElement("span");
-                    genreSpan.classList.add("genreSpan");
-                    genreSpan.innerText = currentGenre.name;
+                    // Laver en forEach til at hente genre
+                    let genreElm =
+                        popularInfoWrapper.querySelector(".genreText");
+                    // console.log(genreElm)
 
-                    genreElm.append(genreSpan);
+                    result.genre_ids.forEach((id) => {
+                        let currentGenre = genres.find(
+                            (genre) => genre.id == id
+                        );
+                        let genreSpan = document.createElement("span");
+                        genreSpan.classList.add("genreSpan");
+                        genreSpan.innerText = currentGenre.name;
+
+                        genreElm.append(genreSpan);
+                    });
+
+                    if (index === 17) {
+                        const interSectionObserver = new IntersectionObserver(
+                            (entries) => {
+                                if (entries[0].intersectionRatio <= 0) return;
+
+                                popularPage++;
+                                console.log("In the viewport");
+                                fetchPopular(popularPage);
+                                interSectionObserver.unobserve(popular);
+                            }
+                        );
+
+                        interSectionObserver.observe(popular);
+                    }
                 });
-
-                if (index === 17) {
-
-                    const interSectionObserver = new IntersectionObserver((entries) => {
-                        if (entries[0].intersectionRatio <= 0) return
-                      
-                        popularPage++
-                        console.log("In the viewport")
-                        fetchPopular(popularPage)
-                        interSectionObserver.unobserve(popular)
-                    })
-
-                    interSectionObserver.observe(popular)
-                }
             });
-        });
     }
 
-    fetchPopular(popularPage)
+    fetchPopular(popularPage);
 
     // Laver en footer
     let footer = document.createElement("footer");
@@ -167,5 +181,4 @@ document.addEventListener("DOMContentLoaded", () => {
         <a href="#"><i class="fa-regular fa-bookmark"></i></a>
         `;
     wrapperElm.append(footer);
-    
 });

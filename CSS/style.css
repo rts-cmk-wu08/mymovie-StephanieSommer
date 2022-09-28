@@ -101,6 +101,7 @@ body {
 
 .posters {
     width: 8.9rem;
+    height: 13.25rem;
 }
 
 .heroImg {
@@ -125,7 +126,8 @@ body {
 }
 
 .popularImages {
-    width: 5.3rem;
+    width: 5.32rem;
+    height: 8rem;
 }
 
 .castSpan {
@@ -136,7 +138,7 @@ body {
 .profilImg {
     width: 4.5rem;
     height: 4.5rem;
-    object-fit: fill;
+    object-fit: cover;
     border-radius: 5px;
 }
 
