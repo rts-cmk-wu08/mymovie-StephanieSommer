@@ -1,10 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+    let popularPage = 1
     let imgPathPopular = "https://image.tmdb.org/t/p/w500";
     let imgPathShowing = "https://image.tmdb.org/t/p/original";
     let myKey = "61b4cbd423cdfbcd59353195172df0dc";
-    let nowShowingURL = `https://api.themoviedb.org/3/movie/now_playing?api_key=${myKey}&language=en-US&page=1`;
-    let popularURL = `https://api.themoviedb.org/3/movie/popular?api_key=${myKey}&language=en-US&page=1`;
+    let nowShowingURL = `https://api.themoviedb.org/3/movie/now_playing?api_key=${myKey}&language=en-US&page=6`;
+    // let popularURL = `https://api.themoviedb.org/3/movie/popular?api_key=${myKey}&language=en-US&page=1`;
 
     // Laver en variable, henter div'en fra index.html med classname wrapper
     let wrapperElm = document.querySelector(".wrapper");
@@ -94,13 +95,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     popularSection.append(popularWrapper);
 
+
+    function fetchPopular(page) {
     // Laver et fetch til popular wrapperen
-    fetch(popularURL)
+    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${myKey}&language=en-US&page=${page}`)
         .then((response) => response.json())
         .then((data) => {
             console.log(data);
 
-            data.results.forEach((result) => {
+            data.results.forEach((result, index)  => {
                 let popular = document.createElement("a");
                 popular.classList.add("popular", "flex");
                 popular.setAttribute("href", `detail.html?id=${result.id}`);
@@ -134,8 +137,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     genreElm.append(genreSpan);
                 });
+
+                if (index === 17) {
+
+                    const interSectionObserver = new IntersectionObserver((entries) => {
+                        if (entries[0].intersectionRatio <= 0) return
+                      
+                        popularPage++
+                        console.log("In the viewport")
+                        fetchPopular(popularPage)
+                        interSectionObserver.unobserve(popular)
+                    })
+
+                    interSectionObserver.observe(popular)
+                }
             });
         });
+    }
+
+    fetchPopular(popularPage)
 
     // Laver en footer
     let footer = document.createElement("footer");
