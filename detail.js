@@ -16,6 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
     heroHeader.classList.add("heroHeader");
     wrapperElm.append(heroHeader);
 
+    let trailerMovies = document.createElement("div")
+    trailerMovies.classList.add("trailerMovies")
+    heroHeader.append(trailerMovies)
+
     let arrowToggleElm = document.createElement("div")
     arrowToggleElm.classList.add("arrowToggle")
     arrowToggleElm.innerHTML = `
@@ -42,6 +46,24 @@ document.addEventListener("DOMContentLoaded", () => {
     castSection.classList.add("castSection");
     main.append(castSection);
 
+    // Laver et fetch til video
+    fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${myKey}&language=en-US`)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+
+        // pop tager et specifikt et element/array og tager noget data derfra
+            let trailers = data.results.pop()
+            console.log(trailers)
+
+            // let trailerMovies = document.createElement("div")
+            trailerMovies.innerHTML = `
+            <iframe width="100%" height="330" src="https://www.youtube.com/embed/${trailers.key}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+            `
+        heroHeader.append(trailerMovies)
+    })
+
     // Laver et fetch til al info indtil cast sectionen
     fetch(detailsURL)
         .then((response) => response.json())
@@ -50,10 +72,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             let hours = Math.floor(data.runtime / 60);
             let minutes = data.runtime % 60;
-            let heroImg = new Image()
-            heroImg.src = imgPathShowing + data.backdrop_path
-            heroImg.classList.add("heroImg")
-            heroHeader.prepend(heroImg) 
+            // let heroImg = new Image()
+            // heroImg.src = imgPathShowing + data.backdrop_path
+            // heroImg.classList.add("heroImg")
+            // heroHeader.prepend(heroImg) 
             
 
             detailSection.innerHTML = `

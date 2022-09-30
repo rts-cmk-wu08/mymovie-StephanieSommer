@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let imgPathPopular = "https://image.tmdb.org/t/p/w500";
     let imgPathShowing = "https://image.tmdb.org/t/p/original";
     let myKey = "61b4cbd423cdfbcd59353195172df0dc";
-    let nowShowingURL = `https://api.themoviedb.org/3/movie/now_playing?api_key=${myKey}&language=en-US&page=6`;
+    let nowShowingURL = `https://api.themoviedb.org/3/movie/now_playing?api_key=${myKey}&language=en-US&page=4`;
     // let popularURL = `https://api.themoviedb.org/3/movie/popular?api_key=${myKey}&language=en-US&page=1`;
 
     // Laver en variable, henter div'en fra index.html med classname wrapper
