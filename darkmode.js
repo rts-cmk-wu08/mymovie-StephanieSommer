@@ -1,4 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
     let switchElm = document.querySelector(".switch>:first-child");
 
     console.log(switchElm);
@@ -31,4 +30,3 @@ document.addEventListener("DOMContentLoaded", () => {
             setActiveStyleSheet("light");
         }
     });
-});

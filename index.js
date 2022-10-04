@@ -1,4 +1,5 @@
-document.addEventListener("DOMContentLoaded", () => {
+    import { genres } from "./genres.js"
+    
     let popularPage = 1;
     let imgPathPopular = "https://image.tmdb.org/t/p/w500";
     let imgPathShowing = "https://image.tmdb.org/t/p/original";
@@ -181,4 +182,3 @@ document.addEventListener("DOMContentLoaded", () => {
         <a href="#"><i class="fa-regular fa-bookmark"></i></a>
         `;
     wrapperElm.append(footer);
-});
