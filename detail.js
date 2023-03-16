@@ -1,5 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
-
     let params = new URLSearchParams(window.location.search);
     let id = params.get("id");
     console.log(id);
@@ -147,4 +145,3 @@ document.addEventListener("DOMContentLoaded", () => {
                 imgNameWrapper.append(castSpan);
             });
         });
-});

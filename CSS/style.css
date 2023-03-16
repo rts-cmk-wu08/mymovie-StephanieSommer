@@ -24,7 +24,7 @@ body {
     top: -40px;
 }
 
-.myMoviesHeadline, .nowShowingHeadline, .popularHeadline, .descriptionHeadline, .castHeadline {
+.myMoviesHeadline, .indexHeadline, .popularHeadline, .descriptionHeadline, .castHeadline {
     font-family: 'Merriweather', serif;
     font-size: 1rem;
     font-weight: 900;
